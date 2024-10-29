@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Website Generator</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <h1>AI Website Generator</h1>
+                </div>
+                <div class="nav-links">
+                    <a href="#how-it-works">How It Works</a>
+                    <a href="templates.html">Templates</a>
+                    <a href="pricing.html">Pricing</a>
+                    <a href="documentation.html">Docs</a>
+                    <button id="loginBtn" class="btn btn-outline">Login</button>
+                    <button id="signupBtn" class="btn btn-primary">Get Started</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Create Your Professional Website in Minutes</h1>
+                    <p>Let AI build your perfect website. No coding required.</p>
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary btn-large">Start Building Free</button>
+                        <button class="btn btn-outline btn-large">View Templates</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="generator-section">
+            <div class="container">
+                <div class="generator-grid">
+                    <div class="form-container">
+                        <h2>Create Your Website</h2>
+                        <form id="websiteGeneratorForm">
+                            <!-- Website Type & Structure -->
+                            <div class="form-section">
+                                <h3>Website Type & Structure</h3>
+                                <div class="form-group">
+                                    <label for="websiteType">Type of Website</label>
+                                    <select id="websiteType" required>
+                                        <option value="">Select website type</option>
+                                        <option value="business">Business Website</option>
+                                        <option value="ecommerce">E-commerce Store</option>
+                                        <option value="portfolio">Portfolio</option>
+                                        <option value="blog">Blog</option>
+                                        <option value="landing">Landing Page</option>
+                                    </select>
+                                </div>
+
+
+
+                                <div class="form-group">
+                                    <label for="pageCount">How many pages do you need?</label>
+                                    <select id="pageCount" required>
+                                        <option value="1">Single Page</option>
+                                        <option value="3">Basic (3 pages)</option>
+                                        <option value="5">Standard (5 pages)</option>
+                                        <option value="10">Professional (10 pages)</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Which pages do you need?</label>
+                                    <div class="checkbox-group">
+                                        <label class="checkbox-label">
+                                            <input type="checkbox" name="pages" value="home"> Home
+                                        </label>
+                                        <label class="checkbox-label">
+                                            <input type="checkbox" name="pages" value="about"> About
+                                        </label>
+                                        <label class="checkbox-label">
+                                            <input type="checkbox" name="pages" value="services"> Services
+                                        </label>
+                                        <label class="checkbox-label">
+                                            <input type="checkbox" name="pages" value="contact"> Contact
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Business Information -->
+                            <div class="form-section">
+                                <h3>Business Details</h3>
+                                <div class="form-group">
+                                    <label for="businessName">Business Name</label>
+                                    <input type="text" id="businessName" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="businessType">Business Type</label>
+                                    <select id="businessType" required>
+                                        <option value="">Select business type</option>
+                                        <option value="retail">Retail Store</option>
+                                        <option value="restaurant">Restaurant/Café</option>
+                                        <option value="professional">Professional Services</option>
+                                        <option value="healthcare">Healthcare</option>
+                                        <option value="technology">Technology</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="businessDescription">Brief Description</label>
+                                    <textarea id="businessDescription" rows="4" required></textarea>
+                                </div>
+                            </div>
+
+                            <!-- Extra Features -->
+                            <div class="form-section">
+                                <h3>Extra Features</h3>
+                                <div class="form-group">
+                                    <label>What features do you need?</label>
+                                    <div class="checkbox-group">
+                                        <label class="checkbox-label">
+                                            <input type="checkbox" name="features" value="booking"> Online Booking
+                                        </label>
+                                        <label class="checkbox-label">
+                                            <input type="checkbox" name="features" value="newsletter"> Newsletter
+                                        </label>
+                                        <label class="checkbox-label">
+                                            <input type="checkbox" name="features" value="social"> Social Media
+                                        </label>
+                                        <label class="checkbox-label">
+                                            <input type="checkbox" name="features" value="chat"> Live Chat
+                                        </label>
+                                    </div>
+                                </div>
+
+<!-- Add this inside your form -->
+<button type="button" onclick="testGeneration()" class="btn btn-secondary">
+    Test Generation
+</button>
+
+<div id="testResult"></div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-block">Generate Website</button>
+                        </form>
+                    </div>
+
+                    <div class="preview-container">
+                        <h2>Live Preview</h2>
+                        <div id="previewFrame">
+                            <div class="preview-placeholder">
+                                Your website preview will appear here
+                            </div>
+                        </div>
+                        <div class="preview-controls">
+                            <button class="btn btn-outline" id="mobilePreview">
+                                <i class="fas fa-mobile-alt"></i>
+                            </button>
+                            <button class="btn btn-outline" id="tabletPreview">
+                                <i class="fas fa-tablet-alt"></i>
+                            </button>
+                            <button class="btn btn-outline active" id="desktopPreview">
+                                <i class="fas fa-desktop"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>About</h3>
+                    <p>AI-powered website generation for businesses of all sizes.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Templates</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">Documentation</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="/js/utils/cache.js"></script>
+    <script src="/js/utils/rateLimit.js"></script>
+    <script src="/js/features/preview/previewManager.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/features/preview/previewManager.js"></script>
+</body>
+</html>
