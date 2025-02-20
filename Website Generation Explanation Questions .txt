@@ -97,11 +97,9 @@ The General Questions to parse through AI when the user enters the form details 
 For example if the user enters in on the form a you'll have a template where you ask the question ... <website type> first then <number of pages> then <pages required>, home , about, services, contact, then <'business name'> then <'description'> so the question would me placed in into AI with this wording around whatever the user picks for those form inputs... 
 
 
-(Placeholders)
+(Placeholders)  MORE UPDATED THAN THE BOTTOM ONE ... doesn't have color scheme layout or font ...
 
-'I would like you to print me the html, css and javascript all in html document and print multiple pages if I say I need them, listen to the following, take multiple inputs if need be. I would like a <website type> with <number of pages> which will be a <pages required> page(s) and my business needs to be called <'business name'> and some information to bear in mind and include would be <'description'> and if possible please include these extra features <featured ticked> please be as detailed as possible and ensure to include images collected from the internet and a professional sleek look and as aesthetic as you can.              
-
-
+I would like you to print me the html, css and javascript all in html document and print multiple pages if I say I need them, listen to the following, take multiple inputs if need be. I would like a ${websiteType} website with ${pageCount} pages which will be a ${pages} page(s) and my business needs to be called '${businessName}' and some information to bear in mind and include would be '${businessDescription}' and if possible please include these extra features ${features}. For the design, please use a ${colorScheme} color scheme, a ${fontStyle} font style, and a ${layoutPreference} layout. Please be as detailed as possible and ensure to include images collected from the internet and a professional sleek look and as aesthetic as you can.`;
 
 The second way of typing  it to an AI would be 
 

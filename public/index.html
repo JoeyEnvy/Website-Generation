@@ -7,6 +7,59 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+
+
+
+
+
+
+
+
+ <h1>OpenAI API Test</h1>
+    <button id="testButton">Test API Connection</button>
+    <div id="testResult"></div>
+
+
+    <script>
+        async function testAPIConnection() {
+            const apiKey = 'sk-svcacct-my9RsR8w9C-bohxPXQ399JWIa_hkrCxBR13BiDtAmwgCzztgQhgOCLw6fA-3EBDlwmC4qET3BlbkFJ7hMrPabTE019iK7v6SI4EZm_NoaIwkYBW0poJCFopSW37fDu0p6opGE8-Mw7e0slwNhVEA';
+            const testResult = document.getElementById('testResult');
+            testResult.innerHTML = 'Testing API connection...';
+
+            try {
+                const response = await fetch('https://api.openai.com/v1/chat/completions', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${apiKey}`
+                    },
+                    body: JSON.stringify({
+                        model: 'gpt-4', // Or 'gpt-3.5-turbo' based on your preference
+                        messages: [{ role: 'user', content: 'Say this is a test' }],
+                        max_tokens: 50
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                console.log('API Response:', data);
+                testResult.innerHTML = `API connection successful! Response: ${data.choices[0].message.content}`;
+            } catch (error) {
+                console.error('API connection failed:', error);
+                testResult.innerHTML = `API connection failed: ${error.message}`;
+            }
+        }
+
+        // Attach the function to the button click
+        document.getElementById('testButton').addEventListener('click', testAPIConnection);
+    </script>
+
+
+
+
     <header>
         <nav class="navbar">
             <div class="container">
@@ -77,140 +130,162 @@
             </div>
         </section>
 
-        <section class="generator-section">
-            <div class="container">
-                <div class="generator-grid">
-                    <div class="form-container">
-                        <h2>Create Your Website</h2>
-                        <form id="websiteGeneratorForm">
-                            <!-- Website Type & Structure -->
-                            <div class="form-section">
-                                <h3>Website Type & Structure</h3>
-                                <div class="form-group">
-                                    <label for="websiteType">Type of Website</label>
-                                    <select id="websiteType" required>
-                                        <option value="">Select website type</option>
-                                        <option value="business">Business Website</option>
-                                        <option value="ecommerce">E-commerce Store</option>
-                                        <option value="portfolio">Portfolio</option>
-                                        <option value="blog">Blog</option>
-                                        <option value="landing">Landing Page</option>
-                                    </select>
-                                </div>
-
-
-
-                                <div class="form-group">
-                                    <label for="pageCount">How many pages do you need?</label>
-                                    <select id="pageCount" required>
-                                        <option value="1">Single Page</option>
-                                        <option value="3">Basic (3 pages)</option>
-                                        <option value="5">Standard (5 pages)</option>
-                                        <option value="10">Professional (10 pages)</option>
-                                    </select>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Which pages do you need?</label>
-                                    <div class="checkbox-group">
-                                        <label class="checkbox-label">
-                                            <input type="checkbox" name="pages" value="home"> Home
-                                        </label>
-                                        <label class="checkbox-label">
-                                            <input type="checkbox" name="pages" value="about"> About
-                                        </label>
-                                        <label class="checkbox-label">
-                                            <input type="checkbox" name="pages" value="services"> Services
-                                        </label>
-                                        <label class="checkbox-label">
-                                            <input type="checkbox" name="pages" value="contact"> Contact
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Business Information -->
-                            <div class="form-section">
-                                <h3>Business Details</h3>
-                                <div class="form-group">
-                                    <label for="businessName">Business Name</label>
-                                    <input type="text" id="businessName" required>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="businessType">Business Type</label>
-                                    <select id="businessType" required>
-                                        <option value="">Select business type</option>
-                                        <option value="retail">Retail Store</option>
-                                        <option value="restaurant">Restaurant/Café</option>
-                                        <option value="professional">Professional Services</option>
-                                        <option value="healthcare">Healthcare</option>
-                                        <option value="technology">Technology</option>
-                                    </select>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="businessDescription">Brief Description</label>
-                                    <textarea id="businessDescription" rows="4" required></textarea>
-                                </div>
-                            </div>
-
-                            <!-- Extra Features -->
-                            <div class="form-section">
-                                <h3>Extra Features</h3>
-                                <div class="form-group">
-                                    <label>What features do you need?</label>
-                                    <div class="checkbox-group">
-                                        <label class="checkbox-label">
-                                            <input type="checkbox" name="features" value="booking"> Online Booking
-                                        </label>
-                                        <label class="checkbox-label">
-                                            <input type="checkbox" name="features" value="newsletter"> Newsletter
-                                        </label>
-                                        <label class="checkbox-label">
-                                            <input type="checkbox" name="features" value="social"> Social Media
-                                        </label>
-                                        <label class="checkbox-label">
-                                            <input type="checkbox" name="features" value="chat"> Live Chat
-                                        </label>
-                                    </div>
-                                </div>
-
-<!-- Add this inside your form -->
-<button type="button" onclick="testGeneration()" class="btn btn-secondary">
-    Test Generation
-</button>
-
-<div id="testResult"></div>
-                            </div>
-
-                            <button type="submit" class="btn btn-primary btn-block">Generate Website</button>
-                        </form>
+<section class="generator-section"> <div class="container"> <div class="generator-grid"> <div class="form-container"> <h2>Create Your Website</h2> <form id="websiteGeneratorForm"> <!-- Website Type & Structure --> <div class="form-section"> <h3>Website Type & Structure</h3> <div class="form-group"> <label for="websiteType">Type of Website</label> <select id="websiteType" required> <option value="">Select website type</option> <option value="business">Business Website</option> <option value="ecommerce">E-commerce Store</option> <option value="portfolio">Portfolio</option> <option value="blog">Blog</option> <option value="landing">Landing Page</option> </select> </div>                    <div class="form-group">
+                        <label for="pageCount">How many pages do you need?</label>
+                        <select id="pageCount" required>
+                            <option value="1">Single Page</option>
+                            <option value="3">Basic (3 pages)</option>
+                            <option value="5">Standard (5 pages)</option>
+                            <option value="10">Professional (10 pages)</option>
+                        </select>
                     </div>
 
-                    <div class="preview-container">
-                        <h2>Live Preview</h2>
-                        <div id="previewFrame">
-                            <div class="preview-placeholder">
-                                Your website preview will appear here
-                            </div>
-                        </div>
-                        <div class="preview-controls">
-                            <button class="btn btn-outline" id="mobilePreview">
-                                <i class="fas fa-mobile-alt"></i>
-                            </button>
-                            <button class="btn btn-outline" id="tabletPreview">
-                                <i class="fas fa-tablet-alt"></i>
-                            </button>
-                            <button class="btn btn-outline active" id="desktopPreview">
-                                <i class="fas fa-desktop"></i>
-                            </button>
+                    <div class="form-group">
+                        <label>Which pages do you need?</label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="pages" value="home"> Home
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="pages" value="about"> About
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="pages" value="services"> Services
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="pages" value="contact"> Contact
+                            </label>
                         </div>
                     </div>
                 </div>
+
+                <!-- Design Preferences -->
+                <div class="form-section">
+                    <h3>Design Preferences</h3>
+                    <div class="form-group">
+                        <label for="colorScheme">Color Scheme</label>
+                        <select id="colorScheme" required>
+                            <option value="">Select color scheme</option>
+                            <option value="light">Light</option>
+                            <option value="dark">Dark</option>
+                            <option value="colorful">Colorful</option>
+                            <option value="monochrome">Monochrome</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fontStyle">Font Style</label>
+                        <select id="fontStyle" required>
+                            <option value="">Select font style</option>
+                            <option value="modern">Modern</option>
+                            <option value="classic">Classic</option>
+                            <option value="playful">Playful</option>
+                            <option value="minimalist">Minimalist</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="layoutPreference">Layout Preference</label>
+                        <select id="layoutPreference" required>
+                            <option value="">Select layout preference</option>
+                            <option value="grid">Grid</option>
+                            <option value="singleColumn">Single Column</option>
+                            <option value="asymmetric">Asymmetric</option>
+                            <option value="magazine">Magazine Style</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Business Information -->
+                <div class="form-section">
+                    <h3>Business Details</h3>
+                    <div class="form-group">
+                        <label for="businessName">Business Name</label>
+                        <input type="text" id="businessName" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="businessType">Business Type</label>
+                        <select id="businessType" required>
+                            <option value="">Select business type</option>
+                            <option value="retail">Retail Store</option>
+                            <option value="restaurant">Restaurant/Café</option>
+                            <option value="professional">Professional Services</option>
+                            <option value="healthcare">Healthcare</option>
+                            <option value="technology">Technology</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="businessDescription">Brief Description</label>
+                        <textarea id="businessDescription" rows="4" required></textarea>
+                    </div>
+                </div>
+
+                <!-- Extra Features -->
+                <div class="form-section">
+                    <h3>Extra Features</h3>
+                    <div class="form-group">
+                        <label>What features do you need?</label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="features" value="booking"> Online Booking
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="features" value="newsletter"> Newsletter
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="features" value="social"> Social Media
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="features" value="chat"> Live Chat
+                            </label>
+                        </div>
+                    </div>
+
+                   <button type="button" onclick="testGeneration()" class="btn btn-secondary">
+    Test Generation
+</button>f
+
+                    <div id="testResult"></div>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block">Generate Website</button>
+            </form>
+        </div>
+
+        <div class="preview-container">
+            <h2>Live Preview</h2>
+            <div id="previewFrame">
+                <div class="preview-placeholder">
+                    Your website preview will appear here
+                </div>
             </div>
-        </section>
+            <div class="preview-controls">
+                <button class="btn btn-outline" id="mobilePreview">
+                    <i class="fas fa-mobile-alt"></i>
+                </button>
+                <button class="btn btn-outline" id="tabletPreview">
+                    <i class="fas fa-tablet-alt"></i>
+                </button>
+                <button class="btn btn-outline active" id="desktopPreview">
+                    <i class="fas fa-desktop"></i>
+                </button>
+
+                <div class="page-navigation">
+                    <button id="prevPage">Previous Page</button>
+                    <span id="pageIndicator">Page 1 of 1</span>
+                    <button id="nextPage">Next Page</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
     </main>
+
+
 
     <footer>
         <div class="container">
@@ -232,10 +307,28 @@
     </footer>
 
     <!-- Scripts -->
+
+
     <script src="/js/utils/cache.js"></script>
     <script src="/js/utils/rateLimit.js"></script>
     <script src="/js/features/preview/previewManager.js"></script>
-<script src="/js/main.js"></script>
 <script src="/js/features/preview/previewManager.js"></script>
+
+
+
+
+<script src="public/js/main.js">    </script>
+
+
+
+<script src="/public/js/auth.js"></script>
+<script src="/public/js/dashboard.js"></script>
+<script src="/public/js/documentation.js"></script>
+<script src="/public/js/generator.js"></script>
+<script src="/public/js/init.js"></script>
+<script src="/public/js/utils.js"></script>
+
+
+
 </body>
 </html>
